@@ -46,7 +46,7 @@ class Wooendi_admin_view_wooendiconfig {
 
                                 <tbody>
                                         <tr>
-                                            <td>URL</td>
+                                            <td>Endi URL</td>
                                             <td><input type="text" name="wooendi_config_url" value="<?php echo $wooendi_config_url; ?>" /></td>
                                         </tr>        
                                          <tr>
