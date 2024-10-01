@@ -27,17 +27,20 @@ class Wooendi_admin_controller_order {
                 $address .= $order->get_billing_address_2();
 
             if(! empty($order->get_billing_company())){
+                $type = 'company';
+                $registration = 'SARL';
                 $company = $order->get_billing_company();
+            } else {
+                $type = 'individual';
+                $registration = '';
                 $firstname = $order->get_billing_first_name();
                 $lastname = $order->get_billing_last_name();
-            } else {
-                $company = $order->get_billing_first_name() . ' ' . $order->get_billing_last_name();
-                $firstname = '';
-                $lastname = '';
             }
 
             $client = Customer::add([
                         'code' => '',
+                        'type' => 'individual',
+                        'registration' => $registration,
                         'company_name' => $company,
                         'civilite' => '',
                         'lastname' => $lastname,
@@ -55,7 +58,7 @@ class Wooendi_admin_controller_order {
                         'fax' => '',
                         'comments' => ''
             ]);
-            
+
             /*
             
             get_billing_country()
@@ -63,20 +66,20 @@ class Wooendi_admin_controller_order {
             get_shipping_total()
             */
 
-            Customer::addToProject($client, $wooendi_config['project']);
+            Customer::addToProject($client['id'], $wooendi_config['project']);
 
-            $facture = Invoice::add($client, $wooendi_config['project'], 'Commande ' . $order->get_order_number());
+            $facture = Invoice::add($client['id'], $wooendi_config['project'], 'Commande ' . $order->get_order_number());
             update_post_meta($order_id, '_wooendi_invoice_id', $facture);
 
 
             Invoice::setObject($facture, 'Commande ' . $order->get_order_number());
             Invoice::setDisplayUnit($facture, 1);
 
-            $lgroups = Invoice::getTaskLineGroups($facture);
+            $lgroups = Invoice::getTaskLineGroups($facture['id']);
 
              foreach ($order->get_items() as $item) {
 
-                Invoice::addLine($facture, [
+                Invoice::addLine($facture['id'], [
 
                                             'order' => 1,
                                             'description' => $item->get_name(),
@@ -94,7 +97,7 @@ class Wooendi_admin_controller_order {
              }
 
             
-            Invoice::save($facture, [
+            Invoice::save($facture['id'], [
                                         'name' => 'Commande ' . $order->get_order_number(),
                                         'financial_year' => date('Y')   
                                 ]
