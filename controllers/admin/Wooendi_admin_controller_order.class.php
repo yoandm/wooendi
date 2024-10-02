@@ -68,7 +68,7 @@ class Wooendi_admin_controller_order {
             Customer::addToProject($client['id'], $wooendi_config['project']);
 
             $facture = Invoice::add($client['id'], $wooendi_config['project'], 'Commande ' . $order->get_order_number());
-            update_post_meta($order_id, '_wooendi_invoice_id', $facture);
+            update_post_meta($order_id, '_wooendi_invoice_id', $facture['id']);
 
 
             Invoice::setObject($facture, 'Commande ' . $order->get_order_number());
