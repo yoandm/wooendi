@@ -51,7 +51,6 @@ class Wooendi_admin_controller_order {
                         'city' => $order-> get_billing_city(),
                         'country' => '',
                         'tva_intracomm' => '',
-                        'registration' => '',
                         'email' => $order->get_billing_email(),
                         'mobile' => '',
                         'phone' => $order->get_billing_phone(),
