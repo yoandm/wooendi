@@ -71,8 +71,8 @@ class Wooendi_admin_controller_order {
             update_post_meta($order_id, '_wooendi_invoice_id', $facture['id']);
 
 
-            Invoice::setObject($facture, 'Commande ' . $order->get_order_number());
-            Invoice::setDisplayUnit($facture, 1);
+            Invoice::setObject($facture['id'], 'Commande ' . $order->get_order_number());
+            Invoice::setDisplayUnit($facture['id'], 1);
 
             $lgroups = Invoice::getTaskLineGroups($facture['id']);
 
