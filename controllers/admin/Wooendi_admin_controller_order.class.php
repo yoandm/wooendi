@@ -39,7 +39,7 @@ class Wooendi_admin_controller_order {
 
             $client = Customer::add([
                         'code' => '',
-                        'type' => 'individual',
+                        'type' => $type,
                         'registration' => $registration,
                         'company_name' => $company,
                         'civilite' => '',
