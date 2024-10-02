@@ -19,12 +19,14 @@ class Wooendi_admin_view_wooendiconfig {
             $wooendi_config_password = $wooendi_config['password'];
             $wooendi_config_id = $wooendi_config['id'];            
             $wooendi_config_project = $wooendi_config['project'];            
+            $wooendi_config_unit = $wooendi_config['unit'];            
         } else {
             $wooendi_config_url = '';
             $wooendi_config_login = '';
             $wooendi_config_password = '';
             $wooendi_config_id = '';    
             $wooendi_config_project = '';                 
+            $wooendi_config_unit = '';                 
         }
 
 
@@ -64,7 +66,11 @@ class Wooendi_admin_view_wooendiconfig {
                                         <tr>
                                             <td>ID projet</td>   
                                             <td><input type="text" name="wooendi_config_project" value="<?php echo $wooendi_config_project; ?>"  /></td>
-                                        </tr>                                                                   
+                                        </tr>  
+                                         <tr>
+                                            <td>Unité</td>   
+                                            <td><input type="text" name="wooendi_config_unit" value="<?php echo $wooendi_config_unit; ?>"  /></td>
+                                        </tr>                                                                                                        
                                 </tbody>
                             </table>
 

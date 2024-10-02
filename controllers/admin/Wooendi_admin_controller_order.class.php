@@ -84,7 +84,7 @@ class Wooendi_admin_controller_order {
                                             'description' => $item->get_name(),
                                             'cost' => $item->get_total(),
                                             "quantity" => $item->get_quantity(),
-                                            'unity' => 'Unité(s)',
+                                            'unity' => $wooendi_config['unit'], //'Unité(s)',
                                             'tva' => 20,
                                             'group_id' => $lgroups[0]['id'],
                                             'product_id' => 12,

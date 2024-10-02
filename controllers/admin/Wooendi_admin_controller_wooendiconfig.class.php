@@ -11,13 +11,15 @@
             $wooendi_password = $_POST['wooendi_config_password'];
             $wooendi_id = (int) $_POST['wooendi_config_id'];
             $wooendi_project = (int) $_POST['wooendi_config_project'];
+            $wooendi_unit = $_POST['wooendi_config_unit'];
 
             $wooendi_config = array(
                 'url' => $wooendi_url,
                 'login' => $wooendi_login,
                 'password' => $wooendi_password,
                 'id' => $wooendi_id,
-                'project' => $wooendi_project
+                'project' => $wooendi_project,
+                'unit' => $wooendi_unit,
             );
 
             update_option('wooendi_config', json_encode($wooendi_config));
